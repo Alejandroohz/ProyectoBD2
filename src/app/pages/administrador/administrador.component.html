@@ -1,0 +1,81 @@
+<div class="middle-section">
+    <div class="container-1">
+      <h2>CREAR FACULTAD</h2>
+      <div class="form-container">
+        <form (ngSubmit)="onSubmitFacultad()" #facultadForm="ngForm">
+          <div class="form-group">
+            <label for="facultadNombre">Nombre de Facultad:</label>
+            <input 
+              type="text" 
+              id="facultadNombre"
+              name="facultadNombre"
+              [(ngModel)]="facultadNombre"
+              required
+              class="form-control"
+              placeholder="Ingrese el nombre de la facultad">
+          </div>
+          <button type="submit" [disabled]="!facultadForm.form.valid">
+            Crear Facultad
+          </button>
+        </form>
+      </div>
+    </div>
+  
+    <div class="container-1">
+      <h2>CREAR CARRERA</h2>
+      <div class="form-container">
+        <form (ngSubmit)="onSubmitCarrera()" #carreraForm="ngForm">
+          <div class="form-group">
+            <label for="carreraNombre">Nombre de Carrera:</label>
+            <input 
+              type="text" 
+              id="carreraNombre"
+              name="carreraNombre"
+              [(ngModel)]="carreraNombre"
+              required
+              class="form-control"
+              placeholder="Ingrese el nombre de la carrera"
+              [disabled]="isLoading">
+          </div>
+          <button type="submit" [disabled]="!carreraForm.form.valid || isLoading">
+            {{ isLoading ? 'Creando...' : 'Crear Carrera' }}
+          </button>
+        </form>
+      </div>
+    </div>
+  
+    <div class="container-3">
+      <h2>CREAR ESTUDIANTE</h2>
+      <div class="form-container">
+        <form (ngSubmit)="onSubmitEstudiante()" #estudianteForm="ngForm">
+          <div class="form-group">
+            <label for="estudianteNombre">Nombre de Estudiante:</label>
+            <input 
+              type="text" 
+              id="estudianteNombre"
+              name="estudianteNombre"
+              [(ngModel)]="estudianteNombre"
+              required
+              class="form-control"
+              placeholder="Ingrese el nombre del estudiante">
+          </div>
+          <div class="form-group">
+            <label for="facultad">Facultad:</label>
+            <select id="facultad" name="facultad" [(ngModel)]="facultadSeleccionada" required class="form-control">
+              <option *ngFor="let facultad of facultades" [value]="facultad.nombre">{{ facultad.nombre }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="carrera">Carrera:</label>
+            <select id="carrera" name="carrera" [(ngModel)]="carreraSeleccionada" required class="form-control">
+              <option *ngFor="let carrera of carreras" [value]="carrera.nombre">{{ carrera.nombre }}</option>
+            </select>
+          </div>
+          <button type="submit" [disabled]="!estudianteForm.form.valid">
+            Crear Estudiante
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
